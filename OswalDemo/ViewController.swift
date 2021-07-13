@@ -50,9 +50,9 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userListViewModel.users.count
+//        return userListViewModel.users.count
         
-//        return userListViewModel.usersList.count // @VIJENDRA for binding
+        return userListViewModel.usersList.value?.count ?? 0 // @VIJENDRA for binding
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +61,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.nameLbl.text = userListViewModel.users[indexPath.row].name
         
         // @VIJENDRA for binding
-//        cell?.nameLbl.text = userListViewModel.usersList[indexPath.row].name
+        cell?.nameLbl.text = userListViewModel.usersList.value?[indexPath.row].name
         
         return cell!
     }

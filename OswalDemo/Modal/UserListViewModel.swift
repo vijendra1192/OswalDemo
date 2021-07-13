@@ -14,29 +14,29 @@ enum TableType {
 
 
 // @VIJENDRA Observer for data binding
-//class Observable<T> {
-//    var value: T? {
-//        didSet {
-//            listener?(value)
-//        }
-//    }
-//
-//    init(_ value: T?) {
-//        self.value = value
-//    }
-//
-//    private var listener: ((T?) -> Void)?
-//
-//    func bind(_ listener: @escaping (T?) -> Void) {
-//        listener(value)
-//        self.listener = listener
-//    }
-//
-//    func bindTest(_ listener: @escaping (T?) -> Void) {
-//        listener(value)
-//        self.listener = listener
-//    }
-//}
+class Observable<T> {
+    var value: T? {
+        didSet {
+            listener?(value)
+        }
+    }
+
+    init(_ value: T?) {
+        self.value = value
+    }
+
+    private var listener: ((T?) -> Void)?
+
+    func bind(_ listener: @escaping (T?) -> Void) {
+        listener(value)
+        self.listener = listener
+    }
+
+    func bindTest(_ listener: @escaping (T?) -> Void) {
+        listener(value)
+        self.listener = listener
+    }
+}
 // End
 
 protocol ViewControllerDelegate: AnyObject {
@@ -51,7 +51,7 @@ extension ViewControllerDelegate {
 
 // ViewModels
 class UserListViewModel {
-//    var usersList: Observable<[UserTableCellViewModel]> = Observable([]) // @VIJENDRA Only for data bindings
+    var usersList: Observable<[UserTableCellViewModel]> = Observable([]) // @VIJENDRA Only for data bindings
     
     var users: [UserTableCellViewModel]
     weak var delegate: ViewControllerDelegate?
@@ -73,6 +73,10 @@ class UserListViewModel {
             }
         } else {
             self.users = employees.compactMap({
+                UserTableCellViewModel(name: $0.name ?? "", id: $0.id )
+            })
+            
+            self.usersList.value = employees.compactMap({
                 UserTableCellViewModel(name: $0.name ?? "", id: $0.id )
             })
             delegate?.showTableViewData()
@@ -122,6 +126,12 @@ class UserListViewModel {
         self.users = model.compactMap({
             UserTableCellViewModel(name: $0.name, id: $0.id )
         })
+        
+        
+        self.usersList.value = model.compactMap({
+            UserTableCellViewModel(name: $0.name ?? "", id: $0.id )
+        })
+        
         return users
     }
     
@@ -144,6 +154,10 @@ class UserListViewModel {
         users.remove(at: index)
         _ = saveData(model: users)
         delegate?.swipeDeleteActionPressed(at: Int16(index))
+    }
+    
+    func updateTableData() {
+
     }
 }
 
