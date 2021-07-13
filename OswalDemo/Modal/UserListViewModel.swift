@@ -129,7 +129,7 @@ class UserListViewModel {
         
         
         self.usersList.value = model.compactMap({
-            UserTableCellViewModel(name: $0.name ?? "", id: $0.id )
+            UserTableCellViewModel(name: $0.name, id: $0.id )
         })
         
         return users
@@ -157,7 +157,7 @@ class UserListViewModel {
     }
     
     func updateTableData() {
-
+        self.usersList.value?.append(contentsOf: usersList.value!)
     }
 }
 

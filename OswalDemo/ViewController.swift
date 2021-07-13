@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         setUpViewModel()
     }
     
+    @IBAction func updateTablePressed(_ sender: Any) {
+        userListViewModel.updateTableData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.userListViewModel.employeeListApiCall()
@@ -27,11 +31,11 @@ class ViewController: UIViewController {
     private func setUpViewModel() {
         
         // @VIJENDRA This is only for binding
-//        userListViewModel.users.bind { _ in
-//            DispatchQueue.main.async {[weak self] in
-//                self?.tvLists.reloadData()
-//            }
-//        }
+        userListViewModel.usersList.bind { _ in
+            DispatchQueue.main.async {[weak self] in
+                self?.tvLists.reloadData()
+            }
+        }
     }
  
     private func setupTableView() {

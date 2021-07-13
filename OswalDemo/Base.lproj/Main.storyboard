@@ -16,18 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-ZI-QkL">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ehn-V6-p7r">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-ZI-QkL">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="773"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yms-Sb-UfI">
+                                        <rect key="frame" x="0.0" y="773" width="414" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="cCV-zL-Kww"/>
+                                        </constraints>
+                                        <state key="normal" title="Update table data"/>
+                                        <connections>
+                                            <action selector="updateTablePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1js-8Z-ef8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QWU-ZI-QkL" secondAttribute="bottom" id="4br-HM-PHO"/>
-                            <constraint firstItem="QWU-ZI-QkL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="E9s-Jy-QyC"/>
-                            <constraint firstItem="QWU-ZI-QkL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fCU-Rc-JsL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QWU-ZI-QkL" secondAttribute="trailing" id="rJJ-Bc-eU8"/>
+                            <constraint firstItem="ehn-V6-p7r" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0dB-kd-8jZ"/>
+                            <constraint firstItem="ehn-V6-p7r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GAy-Eo-eQD"/>
+                            <constraint firstItem="ehn-V6-p7r" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Qat-2e-pzj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ehn-V6-p7r" secondAttribute="bottom" id="wqQ-mK-IPi"/>
                         </constraints>
                     </view>
                     <connections>
