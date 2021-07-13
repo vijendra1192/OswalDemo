@@ -157,7 +157,7 @@ class UserListViewModel {
     }
     
     func updateTableData() {
-        self.usersList.value?.append(contentsOf: usersList.value!)
+//        self.usersList.value?.append(contentsOf: usersList.value!)
     }
 }
 
